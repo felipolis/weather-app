@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border list-none p-0 m-0 scroll-smooth;
+  }
+
+  body {
+    @apply font-nunito bg-background text-on-background text-body-3 overflow-hidden;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-[6px] h-[6px]
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white-alpha-8 rounded-pill
+  }
+  
+  @font-face {
+    font-family: 'Material Icons Rounded';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/font/material-symbol-rounded.woff2') format('woff2');
+  }
+}
+
+@layer utilities {
+  .m-icon {
+    font-family: 'Material Icons Rounded';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    height: 1em;
+    width: 1em;
+    overflow: hidden;
+  }
+}
