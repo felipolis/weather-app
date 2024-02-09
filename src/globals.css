@@ -6,12 +6,49 @@
 @tailwind utilities;
 
 @layer base {
+
   * {
-    @apply box-border list-none p-0 m-0 scroll-smooth;
+    @apply box-border list-none p-0 m-0;
+  }
+
+  html {
+    @apply font-nunito text-[10px] scroll-smooth;
   }
 
   body {
-    @apply font-nunito bg-background text-on-background text-body-3 overflow-hidden;
+    @apply  bg-background text-on-background text-body-3 overflow-hidden;
+  }
+
+  img,
+  span,
+  input,
+  button {
+    @apply block
+  }
+
+  img {
+    @apply h-auto
+  }
+
+  input,
+  button {
+    @apply bg-none border-none text-inherit
+  }
+
+  input {
+    @apply w-full
+  }
+
+  button {
+    @apply cursor-pointer
+  }
+
+  :focus-visible {
+    @apply outline-2 outline outline-white outline-offset-2
+  }
+
+  ::selection {
+    @apply bg-white-alpha-8
   }
 
   ::-webkit-scrollbar {
@@ -26,7 +63,7 @@
     font-family: 'Material Icons Rounded';
     font-style: normal;
     font-weight: 400;
-    src: url('./assets/font/material-symbol-rounded.woff2') format('woff2');
+    src: url('fonts/material-symbol-rounded.woff2') format('woff2');
   }
 }
 
@@ -49,4 +86,96 @@
     width: 1em;
     overflow: hidden;
   }
+
+  .container {
+    @apply max-w-[1600px] w-full ms-auto me-auto p-4
+  }
+
+  .icon-btn {
+    @apply bg-white-alpha-8 w-12 h-12 grid place-items-center rounded-circle
+  }
+
+  .has-state {
+    position: relative;
+  }
+
+  .has-state:hover {
+    box-shadow: 0px 1px 3px hsla(0, 0%, 0%, 0.5);
+  }
+
+  .has-state:is(:focus, :focus-visible) {
+    box-shadow: none;
+  }
+
+  .has-state::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    clip-path: circle(100% at 50% 50%);
+    transition: 100ms ease;
+  }
+
+  .has-state:hover::before {
+    background-color: hsla(0, 0%, 100%, 0.04);
+  }
+
+  .has-state:is(:focus, :focus-visible)::before {
+    background-color: hsla(0, 0%, 100%, 0.08);
+    animation: ripple 250ms ease forwards;
+  }
+
+  @keyframes ripple {
+    0% {
+      clip-path: circle(0% at 50% 50%);
+    }
+    100% {
+      clip-path: circle(100% at 50% 50%);
+    }
+  }
+
+  .btn-primary {
+    @apply bg-primary text-on-primary h-12 leading-7 max-w-max flex items-center gap-4 ps-4 pe-4 rounded-pill
+  }
+
+  .btn-primary .span {
+    @apply font-semibold
+  }
+
+  .btn-primary[disabled] {
+    @apply bg-outline text-on-surface-variant cursor-not-allowed
+  }
+
+  .btn-primary[disabled]::before {
+    @apply hidden
+  }
+
+  /* HEADER */
+  .search-view,
+  .header .btn-primary .span {
+    @apply hidden
+  }
+
+  .logo img {
+    @apply w-[150px]
+  }
+
+  .header .container,
+  .header-actions {
+    @apply flex justify-between items-center
+  }
+
+  .header .container {
+    @apply justify-between
+  }
+
+  .header-actions {
+    @apply gap-4
+  }
+
+  .header .btn-primary {
+    @apply ps-3 pe-3
+  }
+
+  
 }

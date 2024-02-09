@@ -50,7 +50,11 @@ export default {
         '16': '16px',
         'pill': '500px',
         'circle': '50%'
-      }
+      },
+      boxShadow: {
+        'shadow-1': '0px 1px 3px hsla(0, 0%, 0%, 0.5)',
+        'shadow-2': '0px 3px 6px hsla(0, 0%, 0%, 0.4)'
+      },
     },
   },
   plugins: [],
