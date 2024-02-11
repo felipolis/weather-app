@@ -27,6 +27,7 @@ export const useOpenMeteoGetWeatherForecast = (lat: number, lon: number) => {
         `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,weather_code,visibility`
         )
       },
+      refetchInterval: 5000,
     })
   }
 
@@ -53,5 +54,6 @@ export const useOpenWeatherGetWeatherForecast = (lat: number, lon: number) => {
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
       )
     },
+    refetchInterval: 5000,
   })
 }

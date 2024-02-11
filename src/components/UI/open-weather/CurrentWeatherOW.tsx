@@ -5,7 +5,7 @@ import { CiCalendar } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 // Hook personalizado para obter parâmetros de URL
-const useQueryParams = (param) => useMemo(() => {
+const useQueryParams = (param: string) => useMemo(() => {
   const params = new URLSearchParams(window.location.search);
   return Number(params.get(param));
 }, [param]);
