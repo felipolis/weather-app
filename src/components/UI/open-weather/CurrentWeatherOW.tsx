@@ -19,7 +19,7 @@ const CurrentWeatherOW = () => {
   if (isLoading) return <div>Loading...</div>;
 
   const { main, weather, dt, name, sys } = data?.data || {};
-  const temperature = main?.temp?.toString().slice(0, 2) ?? '--'; // Melhor manipulação de undefined
+  const temperature = Math.round(main?.temp) ?? '--'; // Melhor manipulação de undefined
   const iconSrc = weather?.[0]?.icon ? `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png` : '';
   const weatherMain = weather?.[0]?.main ?? '';
   const formattedDate = new Date(dt * 1000).toLocaleDateString('en-US', {
