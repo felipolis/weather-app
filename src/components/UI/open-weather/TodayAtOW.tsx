@@ -64,7 +64,7 @@ const TodayAtOW = () => {
   return (
     <div className='w-[80vw]'>
       <Slider {...settings}>
-        {data?.data.list.map((item: WeatherForecastItem, index: number) => (
+        {data?.data?.list?.map((item: WeatherForecastItem, index: number) => (
           <div key={index} className='p-5'>
             <div className='flex flex-col justify-between items-center bg-white-alpha-4 p-10 rounded-16'>
               <div className='text-center'>
