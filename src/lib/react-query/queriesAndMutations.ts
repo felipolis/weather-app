@@ -39,7 +39,7 @@ export const useOpenWeatherGetLocationCoordinates = (name: string) => {
     queryKey: [QUERY_KEYS.GET_LOCATION_COORDINATES],
     queryFn: () => {
       return axiosClient.get(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=10&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=10&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
       )
     },
   })
