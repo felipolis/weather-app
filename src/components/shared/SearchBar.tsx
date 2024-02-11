@@ -13,6 +13,8 @@ const SearchBar = () => {
 
   const selectedApi = useGeneralStore(state => state.selectedApi)
 
+  const setLastSearchedQuery = useGeneralStore(state => state.setLastSearchedQuery)
+
   const setLatitude = useGeneralStore(state => state.setLatitude)
   const setLongitude = useGeneralStore(state => state.setLongitude)
   
@@ -28,10 +30,11 @@ const SearchBar = () => {
   
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
+    
     if (query === "") {
       toast.error('Please, type a city')
     } else {
+      setLastSearchedQuery(query)
       if (selectedApi === "OPEN_METEO") {
         await fetchOpenMeteoLocationCoordinates()
       } else if (selectedApi === "OPEN_WEATHER") {

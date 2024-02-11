@@ -18,13 +18,13 @@ export const useOpenMeteoGetLocationCoordinates = (name: string) => {
 }
 
 
-export const useOpenMeteoGetWeatherForecast = (lat: number, lon: number) => {
+export const useOpenMeteoGetCurrentWeather = (lat: number, lon: number) => {
   return useQuery({
     enabled: lat !== 0 && lon !== 0,
     queryKey: [QUERY_KEYS.GET_WEATHER_FORECAST],
     queryFn: () => {
       return axiosClient.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,is_day,weather_code`
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&timeformat=unixtime&current=temperature_2m,is_day,weather_code&hourly=temperature_2m,weather_code,is_day`
         )
       },
       refetchInterval: 5000,
