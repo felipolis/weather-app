@@ -1,6 +1,6 @@
 import React from 'react';
-import { useOpenWeatherGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { useOpenWeatherGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
 
 // Define os tipos das propriedades esperadas pelo componente para maior segurança e documentação.
 interface HistoryCardOWProps {

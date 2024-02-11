@@ -1,7 +1,7 @@
 import React from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { useOpenMeteoGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
 import { getWeatherStatus } from '../../../lib/utils';
-import ClipLoader from 'react-spinners/ClipLoader';
 
 // Definição de tipos para props para melhorar a tipagem e a documentação.
 interface HistoryCardOMProps {

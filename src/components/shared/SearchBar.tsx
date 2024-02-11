@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { CiSearch } from "react-icons/ci";
-import { useGeneralStore } from '../../store/generalStore';
-import { useOpenMeteoGetLocationCoordinates, useOpenWeatherGetLocationCoordinates } from '../../lib/react-query/queriesAndMutations';
-import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import { useOpenMeteoGetLocationCoordinates, useOpenWeatherGetLocationCoordinates } from '../../lib/react-query/queriesAndMutations';
+import { useGeneralStore } from '../../store/generalStore';
 
 
 const SearchBar = () => {
