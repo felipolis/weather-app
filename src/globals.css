@@ -5,10 +5,36 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
 
   * {
     @apply box-border list-none p-0 m-0;
+
+    --primary: #B5A1E5; 
+    --on-primary: #100E17; 
+    --background: #131214;
+    --on-background: #EAE6F2;
+    --surface: #1D1C1F;
+    --on-surface: #DDDAE5;
+    --on-surface-variant: #7B7980; 
+    --on-surface-variant-2: #B9B6BF;
+    --outline: #3E3D40;
+    --bg-aqi-1: #89E589;
+    --on-bg-aqi-1: #1F331F;
+    --bg-aqi-2: #E5DD89;
+    --on-bg-aqi-2: #33311F;
+    --bg-aqi-3: #E5C089;
+    --on-bg-aqi-3: #332B1F;
+    --bg-aqi-4: #E58989;
+    --on-bg-aqi-4: #331F1F;
+    --bg-aqi-5: #E589B7;
+    --on-bg-aqi-5: #331F29;
+    --white: hsl(0, 0%, 100%);
+    --white-alpha-4: hsla(0, 0%, 100%, 0.04);
+    --white-alpha-8: hsla(0, 0%, 100%, 0.08);
+    --black-alpha-10: hsla(0, 0%, 0%, 0.1);
   }
 
   html {
@@ -16,39 +42,7 @@
   }
 
   body {
-    @apply  bg-background text-on-background text-body-3 overflow-hidden;
-  }
-
-  img,
-  span,
-  input,
-  button {
-    @apply block
-  }
-
-  img {
-    @apply h-auto
-  }
-
-  input,
-  button {
-    @apply bg-none border-none text-inherit
-  }
-
-  input {
-    @apply w-full
-  }
-
-  button {
-    @apply cursor-pointer
-  }
-
-  :focus-visible {
-    @apply outline-2 outline outline-white outline-offset-2
-  }
-
-  ::selection {
-    @apply bg-white-alpha-8
+    @apply  bg-background text-on-background text-body-3;
   }
 
   ::-webkit-scrollbar {
@@ -59,123 +53,5 @@
     @apply bg-white-alpha-8 rounded-pill
   }
   
-  @font-face {
-    font-family: 'Material Icons Rounded';
-    font-style: normal;
-    font-weight: 400;
-    src: url('fonts/material-symbol-rounded.woff2') format('woff2');
-  }
 }
 
-@layer utilities {
-  .m-icon {
-    font-family: 'Material Icons Rounded';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 2.4rem;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    font-feature-settings: 'liga';
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-    height: 1em;
-    width: 1em;
-    overflow: hidden;
-  }
-
-  .container {
-    @apply max-w-[1600px] w-full ms-auto me-auto p-4
-  }
-
-  .icon-btn {
-    @apply bg-white-alpha-8 w-12 h-12 grid place-items-center rounded-circle
-  }
-
-  .has-state {
-    position: relative;
-  }
-
-  .has-state:hover {
-    box-shadow: 0px 1px 3px hsla(0, 0%, 0%, 0.5);
-  }
-
-  .has-state:is(:focus, :focus-visible) {
-    box-shadow: none;
-  }
-
-  .has-state::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    clip-path: circle(100% at 50% 50%);
-    transition: 100ms ease;
-  }
-
-  .has-state:hover::before {
-    background-color: hsla(0, 0%, 100%, 0.04);
-  }
-
-  .has-state:is(:focus, :focus-visible)::before {
-    background-color: hsla(0, 0%, 100%, 0.08);
-    animation: ripple 250ms ease forwards;
-  }
-
-  @keyframes ripple {
-    0% {
-      clip-path: circle(0% at 50% 50%);
-    }
-    100% {
-      clip-path: circle(100% at 50% 50%);
-    }
-  }
-
-  .btn-primary {
-    @apply bg-primary text-on-primary h-12 leading-7 max-w-max flex items-center gap-4 ps-4 pe-4 rounded-pill
-  }
-
-  .btn-primary .span {
-    @apply font-semibold
-  }
-
-  .btn-primary[disabled] {
-    @apply bg-outline text-on-surface-variant cursor-not-allowed
-  }
-
-  .btn-primary[disabled]::before {
-    @apply hidden
-  }
-
-  /* HEADER */
-  .search-view,
-  .header .btn-primary .span {
-    @apply hidden
-  }
-
-  .logo img {
-    @apply w-[150px]
-  }
-
-  .header .container,
-  .header-actions {
-    @apply flex justify-between items-center
-  }
-
-  .header .container {
-    @apply justify-between
-  }
-
-  .header-actions {
-    @apply gap-4
-  }
-
-  .header .btn-primary {
-    @apply ps-3 pe-3
-  }
-
-  
-}
