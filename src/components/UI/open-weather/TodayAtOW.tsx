@@ -86,7 +86,7 @@ const TodayAtOW = () => {
                     hour: 'numeric'
                   })}
                 </div>
-                <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt={`${item.weather[0].main} icon`} className='mx-auto'/>
+                <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt={`${item.weather[0].main} icon`} className='mx-auto'/>
                 <div className='text-center'>
                   {Math.round(item.main.temp)}°C
                 </div>

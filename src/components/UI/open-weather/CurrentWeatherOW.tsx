@@ -30,7 +30,7 @@ const CurrentWeatherOW = () => {
 
   // Tratamento e formatação dos dados para exibição.
   const temperature = Math.round(main?.temp) ?? '--';
-  const iconSrc = weather?.[0]?.icon ? `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png` : '';
+  const iconSrc = weather?.[0]?.icon ? `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png` : '';
   const weatherMain = weather?.[0]?.main ?? '';
   const formattedDate = new Date(dt * 1000).toLocaleDateString('en-US', {
     weekday: 'long', day: 'numeric', month: 'short',

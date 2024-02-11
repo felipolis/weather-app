@@ -21,7 +21,7 @@ const HistoryCardOW: React.FC<HistoryCardOWProps> = ({ item }) => {
   
   // Prepara os dados recebidos para exibição.
   const weatherMain = data?.data?.weather?.[0]?.main ?? 'N/A';
-  const weatherIcon = data?.data?.weather?.[0]?.icon ? `http://openweathermap.org/img/wn/${data?.data?.weather?.[0]?.icon}@2x.png` : '';
+  const weatherIcon = data?.data?.weather?.[0]?.icon ? `https://openweathermap.org/img/wn/${data?.data?.weather?.[0]?.icon}@2x.png` : '';
   const temperature = data?.data?.main?.temp ?? 'N/A';
   
   // Exibe um loader enquanto os dados estão sendo carregados.
