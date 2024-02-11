@@ -16,6 +16,10 @@ O WeatherQuery é uma aplicação web dinâmica projetada para oferecer aos usu�
 * **Tailwind CSS:** Para estilização, utilizamos Tailwind CSS, uma framework CSS que permite criar designs personalizados com rapidez e eficiência, sem sacrificar a performance.
 * **React Query e Zustand:** Para a gestão de estados e chamadas ao backend, o projeto faz uso da biblioteca React Query, otimizando a sincronização de estados e cache de dados. O Zustand, por sua vez, é utilizado para gerenciar o estado global da aplicação e o armazenamento de dados no LocalStorage, promovendo uma arquitetura limpa e eficiente.
 
+### Demo
+
+[Acesse Aqui!](https://weather-jo26soi2c-felipes-projects-41b7eb3c.vercel.app)
+
 ### Como Executar
 
 1. Se Cadastre no [site da OpenWeather](https://openweathermap.org) e obtenha uma API Key
