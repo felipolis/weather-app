@@ -4,6 +4,7 @@ import { useOpenWeatherGetCurrentWeather } from '../../../lib/react-query/querie
 import { CiCalendar } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useGeneralStore } from '../../../store/generalStore';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const CurrentWeatherOW = () => {
   const latitude = useGeneralStore(state => state.latitude);
@@ -15,7 +16,9 @@ const CurrentWeatherOW = () => {
     refetch();
   }, [latitude, longitude, refetch]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return (
+    <ClipLoader color="#36d7b7" />
+  )
   
   const { main, weather, dt, name, sys } = data?.data || {};
   const temperature = Math.round(main?.temp) ?? '--'; // Melhor manipulação de undefined

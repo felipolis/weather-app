@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useGeneralStore } from '../../../store/generalStore';
 import { useOpenWeatherGetWeatherForecast } from '../../../lib/react-query/queriesAndMutations';
 import Slider from "react-slick";
+import ClipLoader from 'react-spinners/ClipLoader';
 
 type WeatherForecastItem = {
   dt: number
@@ -60,6 +61,10 @@ const TodayAtOW = () => {
   useEffect(() => {
     refetch();
   }, [latitude, longitude, refetch]);
+
+  if (isLoading) return (
+    <ClipLoader color="#36d7b7" />
+  )
 
   return (
     <div className='w-[80vw]'>

@@ -5,6 +5,7 @@ import { useOpenMeteoGetLocationCoordinates, useOpenWeatherGetLocationCoordinate
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 
+
 const SearchBar = () => {
 
   const navigate = useNavigate()
@@ -17,14 +18,18 @@ const SearchBar = () => {
 
   const setLatitude = useGeneralStore(state => state.setLatitude)
   const setLongitude = useGeneralStore(state => state.setLongitude)
+
+  const appendHistory = useGeneralStore(state => state.appendHistory)
   
   const { 
     data, 
+    isLoading: isLoadingOpenMeteo,
     refetch: fetchOpenMeteoLocationCoordinates,
   } = useOpenMeteoGetLocationCoordinates(query)
 
   const {
     data: dataOpenWeather,
+    isLoading: isLoadingOpenWeather,
     refetch: fetchOpenWeatherLocationCoordinates,
   } = useOpenWeatherGetLocationCoordinates(query)
   
@@ -41,8 +46,6 @@ const SearchBar = () => {
         await fetchOpenWeatherLocationCoordinates()
       }
     }
-
-    setQuery('')
   }
 
   useEffect(() => {
@@ -57,6 +60,9 @@ const SearchBar = () => {
 
           setLatitude(latitude)
           setLongitude(longitude)
+
+          appendHistory(query, latitude, longitude)
+          setQuery('')
   
           navigate(`/search`)
         }
@@ -70,6 +76,9 @@ const SearchBar = () => {
 
           setLatitude(latitude)
           setLongitude(longitude)
+
+          appendHistory(query, latitude, longitude)
+          setQuery('')
   
           navigate(`/search`)
         }
@@ -97,6 +106,7 @@ const SearchBar = () => {
             className='w-full py-5 px-4 bg-transparent border-none focus:outline-none focus:ring-0'
             onChange={(e) => setQuery(e.target.value)}
             value={query}
+            disabled={isLoadingOpenMeteo || isLoadingOpenWeather}
           />
         </div>
       </form>

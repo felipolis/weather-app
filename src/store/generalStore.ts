@@ -6,13 +6,13 @@ interface GeneralState {
   latitude: number
   longitude: number
   lastSearchedQuery: string
-  history: Array<Array<number>>
+  history: Array<Array<number | string>>
 
   changeSelectedApi: () => void
   setLatitude: (latitude: number) => void
   setLongitude: (longitude: number) => void
   setLastSearchedQuery: (lastSearchedQuery: string) => void
-  appendHistory: (latitude: number, longitude: number) => void
+  appendHistory: (query: string, latitude: number, longitude: number) => void
 }
 
 export const useGeneralStore = create<GeneralState>()(
@@ -34,10 +34,10 @@ export const useGeneralStore = create<GeneralState>()(
       setLatitude: (latitude: number) => set({ latitude }),
       setLongitude: (longitude: number) => set({ longitude }),
       setLastSearchedQuery: (lastSearchedQuery: string) => set({ lastSearchedQuery }),
-      appendHistory: (latitude: number, longitude: number) => {
+      appendHistory: (query: string, latitude: number, longitude: number) => {
         set((state) => {
           return {
-            history: [[latitude, longitude], ...state.history]
+            history: [[query, latitude, longitude], ...state.history]
           }
         })
       }

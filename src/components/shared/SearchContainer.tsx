@@ -1,6 +1,7 @@
 import Logo from './Logo'
 import SearchBar from './SearchBar'
 import ChangeAPI from './ChangeAPI'
+import HistoryBtn from './HistoryBtn'
 
 const SearchContainer = () => {
 
@@ -14,6 +15,9 @@ const SearchContainer = () => {
 
       {/* CHANGE API */}
       <ChangeAPI />
+
+      {/* HISTORY */}
+      <HistoryBtn />
     </div>
   )
 }

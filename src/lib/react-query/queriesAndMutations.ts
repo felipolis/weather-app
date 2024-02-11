@@ -21,7 +21,7 @@ export const useOpenMeteoGetLocationCoordinates = (name: string) => {
 export const useOpenMeteoGetCurrentWeather = (lat: number, lon: number) => {
   return useQuery({
     enabled: lat !== 0 && lon !== 0,
-    queryKey: [QUERY_KEYS.GET_WEATHER_FORECAST],
+    queryKey: [`${lat}-${lon}`],
     queryFn: () => {
       return axiosClient.get(
         `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&timeformat=unixtime&current=temperature_2m,is_day,weather_code&hourly=temperature_2m,weather_code,is_day`
@@ -48,12 +48,13 @@ export const useOpenWeatherGetLocationCoordinates = (name: string) => {
 export const useOpenWeatherGetCurrentWeather = (lat: number, lon: number) => {
   return useQuery({
     enabled: lat !== 0 && lon !== 0,
-    queryKey: [QUERY_KEYS.GET_CURRENT_WEATHER],
+    queryKey: [`${lat}-${lon}`],
     queryFn: () => {
       return axiosClient.get(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
       )
     },
+    retry: 3,
     refetchInterval: 5000,
   })
 }

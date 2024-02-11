@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useGeneralStore } from '../../../store/generalStore';
 import { useOpenMeteoGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
 import Slider from 'react-slick';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const TodayAtOM = () => {
 
@@ -50,6 +51,9 @@ const TodayAtOM = () => {
     refetch();
   }, [latitude, longitude, refetch]);
 
+  if(isLoading) return (
+    <ClipLoader color="#36d7b7" />
+  )
   return (
     <div className='w-[80vw]'>
       <Slider {...settings}>
@@ -70,7 +74,7 @@ const TodayAtOM = () => {
                 {Math.round(data?.data.hourly.temperature_2m[index])}°C
               </div>
             </div>
-            </div>
+          </div>
         ))}
       </Slider>
     </div>
