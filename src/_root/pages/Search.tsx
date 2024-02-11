@@ -1,5 +1,4 @@
 import CurrentWeather from '../../components/UI/CurrentWeather'
-import Forecast from '../../components/UI/Forecast'
 import TodayAt from '../../components/UI/TodayAt'
 
 const Search = () => {
@@ -9,12 +8,8 @@ const Search = () => {
       {/* CURRENT WEATHER */}
       <CurrentWeather />
         
-      {/* TODAY AT */}
+      {/* FORECAST */}
       <TodayAt />
-
-      {/* 4 DAYS FORECAST */}
-      <Forecast />
-      
 
     </div>
   )

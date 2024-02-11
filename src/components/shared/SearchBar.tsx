@@ -12,6 +12,9 @@ const SearchBar = () => {
   const [query, setQuery] = React.useState("")
 
   const selectedApi = useGeneralStore(state => state.selectedApi)
+
+  const setLatitude = useGeneralStore(state => state.setLatitude)
+  const setLongitude = useGeneralStore(state => state.setLongitude)
   
   const { 
     data, 
@@ -48,8 +51,11 @@ const SearchBar = () => {
         } else {
           const latitude = data?.data.results[0].latitude
           const longitude = data?.data.results[0].longitude
+
+          setLatitude(latitude)
+          setLongitude(longitude)
   
-          navigate(`/search?lat=${latitude}&lon=${longitude}`)
+          navigate(`/search`)
         }
 
       } else if (selectedApi === "OPEN_WEATHER") {
@@ -58,8 +64,11 @@ const SearchBar = () => {
         } else {
           const latitude = dataOpenWeather?.data[0].lat
           const longitude = dataOpenWeather?.data[0].lon
+
+          setLatitude(latitude)
+          setLongitude(longitude)
   
-          navigate(`/search?lat=${latitude}&lon=${longitude}`)
+          navigate(`/search`)
         }
       }
     }

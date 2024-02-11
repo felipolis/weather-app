@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom'
-import Header from '../components/shared/Header'
+import SearchContainer from '../components/shared/SearchContainer'
 
 const RootLayout = () => {
   return (
     <div>
       {/* HEADER */}
       <header className='header'>
-        <Header />
+        <SearchContainer />
       </header>
 
       {/* MAIN */}
