@@ -1,53 +1,66 @@
 import { useEffect, useMemo } from 'react';
 import { CiCalendar } from 'react-icons/ci';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { useOpenMeteoGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
 import { getWeatherStatus } from '../../../lib/utils';
 import { useGeneralStore } from '../../../store/generalStore';
-import ClipLoader from 'react-spinners/ClipLoader';
 
+/**
+ * Componente CurrentWeatherOM - Exibe as condições meteorológicas atuais usando a API OpenMeteo.
+ */
 const CurrentWeatherOM = () => {
+  // Acesso às coordenadas e à última pesquisa realizada do estado global.
+  const { latitude, longitude, lastSearchedQuery } = useGeneralStore(state => ({
+    latitude: state.latitude,
+    longitude: state.longitude,
+    lastSearchedQuery: state.lastSearchedQuery,
+  }));
 
-  const latitude = useGeneralStore(state => state.latitude);
-  const longitude = useGeneralStore(state => state.longitude);
-
-  const lastSearchedQuery = useGeneralStore(state => state.lastSearchedQuery);
-
+  // Dados meteorológicos atuais, estado de carregamento e função para refetching.
   const {
     data: currentWeatherData,
     isLoading: isLoadingCurrentWeather,
     refetch: refetchCurrentWeather,
   } = useOpenMeteoGetCurrentWeather(latitude, longitude);
 
+  // Refetch dos dados meteorológicos atuais quando as coordenadas mudam.
   useEffect(() => {
     refetchCurrentWeather();
   }, [latitude, longitude, refetchCurrentWeather]);
 
-  const formattedDate = new Date(currentWeatherData?.data?.current?.time * 1000).toLocaleDateString('en-US', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'short',
-  });
+  // Formatação da data atual.
+  const formattedDate = useMemo(() => {
+    const timestamp = currentWeatherData?.data?.current?.time;
+    return timestamp ? new Date(timestamp * 1000).toLocaleDateString('en-US', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'short',
+    }) : '--';
+  }, [currentWeatherData]);
 
+  // Determinação do status meteorológico atual com base no código de clima.
   const weatherStatus = useMemo(() => {
     const weatherCode = currentWeatherData?.data?.current?.weather_code;
-    getWeatherStatus(weatherCode);
-  }, [currentWeatherData?.data]);
+    return getWeatherStatus(weatherCode);
+  }, [currentWeatherData?.data?.current?.weather_code]);
 
-  if(isLoadingCurrentWeather) return (
-    <ClipLoader color="#36d7b7" />
-  )
+  // Exibição do loader durante o carregamento dos dados.
+  if (isLoadingCurrentWeather) return <ClipLoader color="#36d7b7" />;
 
   return (
     <div className='p-10'>
       <div className='text-3xl'>Now</div>
-
       <div className='flex justify-between w-full items-center'>
         <div className='text-[8rem]'>
           {Math.round(currentWeatherData?.data?.current?.temperature_2m) ?? '--'}°C
         </div>
         <div className='w-[8rem] ml-10'>
-          <img src={`images/weather_icons/${currentWeatherData?.data?.current?.is_day ? 'd' : 'n'}${currentWeatherData?.data?.current?.weather_code}.png`} alt="Weather icon" className='w-full' />
+          <img
+            src={`images/weather_icons/${currentWeatherData?.data?.current?.is_day ? 'd' : 'n'}${currentWeatherData?.data?.current?.weather_code}.png`}
+            alt="Weather icon"
+            className='w-full'
+          />
         </div>
       </div>
 
@@ -72,7 +85,7 @@ const CurrentWeatherOM = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CurrentWeatherOM
+export default CurrentWeatherOM;

@@ -1,7 +1,7 @@
 import Logo from './Logo'
 import SearchBar from './SearchBar'
-import ChangeAPI from './ChangeAPI'
-import HistoryBtn from './HistoryBtn'
+import ApiSwitchButton from './ApiSwitchButton'
+import HistoryBtn from './HistoryButton'
 
 const SearchContainer = () => {
 
@@ -14,7 +14,7 @@ const SearchContainer = () => {
       <SearchBar />
 
       {/* CHANGE API */}
-      <ChangeAPI />
+      <ApiSwitchButton />
 
       {/* HISTORY */}
       <HistoryBtn />

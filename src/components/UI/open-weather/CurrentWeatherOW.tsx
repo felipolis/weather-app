@@ -1,36 +1,41 @@
-import React, { useEffect } from 'react';
-import { useMemo } from 'react';
-import { useOpenWeatherGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
+import { useEffect } from 'react';
 import { CiCalendar } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { useGeneralStore } from '../../../store/generalStore';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { useOpenWeatherGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
+import { useGeneralStore } from '../../../store/generalStore';
 
+/**
+ * Componente CurrentWeatherOW exibe as condições climáticas atuais usando a API OpenWeather.
+ * Utiliza a latitude e longitude do estado global para buscar os dados.
+ */
 const CurrentWeatherOW = () => {
+  // Acesso à latitude e longitude através do estado global gerenciado por Zustand.
   const latitude = useGeneralStore(state => state.latitude);
   const longitude = useGeneralStore(state => state.longitude);
 
+  // Hook personalizado para buscar os dados meteorológicos com base na latitude e longitude.
   const { data, isLoading, refetch } = useOpenWeatherGetCurrentWeather(latitude, longitude);
 
+  // Efeito para refazer a busca sempre que as coordenadas mudam.
   useEffect(() => {
     refetch();
   }, [latitude, longitude, refetch]);
 
-  if (isLoading) return (
-    <ClipLoader color="#36d7b7" />
-  )
+  // Renderiza um spinner enquanto os dados estão sendo carregados.
+  if (isLoading) return <ClipLoader color="#36d7b7" />;
   
+  // Destruturação dos dados recebidos da API.
   const { main, weather, dt, name, sys } = data?.data || {};
-  const temperature = Math.round(main?.temp) ?? '--'; // Melhor manipulação de undefined
+
+  // Tratamento e formatação dos dados para exibição.
+  const temperature = Math.round(main?.temp) ?? '--';
   const iconSrc = weather?.[0]?.icon ? `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png` : '';
   const weatherMain = weather?.[0]?.main ?? '';
   const formattedDate = new Date(dt * 1000).toLocaleDateString('en-US', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'short',
+    weekday: 'long', day: 'numeric', month: 'short',
   });
   const location = `${name}, ${sys?.country}`;
-
 
   return (
     <div className='p-10'>

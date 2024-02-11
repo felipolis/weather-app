@@ -13,12 +13,9 @@ const SearchBar = () => {
   const [query, setQuery] = React.useState("")
 
   const selectedApi = useGeneralStore(state => state.selectedApi)
-
   const setLastSearchedQuery = useGeneralStore(state => state.setLastSearchedQuery)
-
   const setLatitude = useGeneralStore(state => state.setLatitude)
   const setLongitude = useGeneralStore(state => state.setLongitude)
-
   const appendHistory = useGeneralStore(state => state.appendHistory)
   
   const { 

@@ -6,7 +6,7 @@ interface GeneralState {
   latitude: number
   longitude: number
   lastSearchedQuery: string
-  history: Array<Array<number | string>>
+  history: Array<[string, number, number]>
 
   changeSelectedApi: () => void
   setLatitude: (latitude: number) => void

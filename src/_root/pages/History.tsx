@@ -7,7 +7,7 @@ const History = () => {
   const selectedApi = useGeneralStore(state => state.selectedApi)
 
   return (
-    <div className='w-full pt-10 pb-10'>
+    <div className='sm:w-full md:w-[60%] lg:w-[40%] mx-auto pt-10 pb-10'>
       {selectedApi === "OPEN_WEATHER" ? (
         <HistoryOW />
       ) : (
