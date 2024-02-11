@@ -8,7 +8,7 @@ interface GeneralState {
   searchQuery: string
   history: Array<Array<number>>
 
-  setSelectedApi: (selectedApi: string) => void
+  changeSelectedApi: () => void
   setLatitude: (latitude: number) => void
   setLongitude: (longitude: number) => void
   setSearchQuery: (searchQuery: string) => void
@@ -24,7 +24,13 @@ export const useGeneralStore = create<GeneralState>()(
       searchQuery: "",
       history: [],
 
-      setSelectedApi: (selectedApi: string) => set({ selectedApi }),
+      changeSelectedApi: () => {
+        set((state) => {
+          return {
+            selectedApi: state.selectedApi === "OPEN_WEATHER" ? "OPEN_METEO" : "OPEN_WEATHER"
+          }
+        })
+      },
       setLatitude: (latitude: number) => set({ latitude }),
       setLongitude: (longitude: number) => set({ longitude }),
       setSearchQuery: (searchQuery: string) => set({ searchQuery }),
