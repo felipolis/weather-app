@@ -1,8 +1,8 @@
-import { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react'
+import { useGeneralStore } from '../../../store/generalStore';
+import { useOpenMeteoGetCurrentWeather, useOpenMeteoGetLocationCoordinates } from '../../../lib/react-query/queriesAndMutations';
 import { CiCalendar } from 'react-icons/ci';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import { useOpenMeteoGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
-import { useGeneralStore } from '../../../store/generalStore';
 
 const CurrentWeatherOM = () => {
 
@@ -21,14 +21,14 @@ const CurrentWeatherOM = () => {
     refetchCurrentWeather();
   }, [latitude, longitude, refetchCurrentWeather]);
 
-  const formattedDate = new Date(currentWeatherData?.data.current.time * 1000).toLocaleDateString('en-US', {
+  const formattedDate = new Date(currentWeatherData?.data?.current?.time * 1000).toLocaleDateString('en-US', {
     weekday: 'long',
     day: 'numeric',
     month: 'short',
   });
 
   const weatherStatus = useMemo(() => {
-    const weatherCode = currentWeatherData?.data?.current.weather_code;
+    const weatherCode = currentWeatherData?.data?.current?.weather_code;
     
     if (weatherCode === 0) {
       return 'Clear sky';
@@ -97,10 +97,10 @@ const CurrentWeatherOM = () => {
 
       <div className='flex justify-between w-full items-center'>
         <div className='text-[8rem]'>
-          {Math.round(currentWeatherData?.data.current.temperature_2m) ?? '--'}°C
+          {Math.round(currentWeatherData?.data?.current?.temperature_2m) ?? '--'}°C
         </div>
         <div className='w-[8rem] ml-10'>
-          <img src={`images/weather_icons/${currentWeatherData?.data.current.is_day ? 'd' : 'n'}${currentWeatherData?.data.current.weather_code}.png`} alt="Weather icon" className='w-full' />
+          <img src={`images/weather_icons/${currentWeatherData?.data?.current?.is_day ? 'd' : 'n'}${currentWeatherData?.data?.current?.weather_code}.png`} alt="Weather icon" className='w-full' />
         </div>
       </div>
 
