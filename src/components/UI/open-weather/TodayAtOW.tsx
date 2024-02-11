@@ -22,7 +22,7 @@ const TodayAtOW = () => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-    initialSlide: 0,
+    initialSlide: 1,
     variableWidth: false,
     responsive: [
       {
@@ -30,20 +30,23 @@ const TodayAtOW = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,
+          initialSlide: 1,
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          initialSlide: 1,
         }
       }
     ]

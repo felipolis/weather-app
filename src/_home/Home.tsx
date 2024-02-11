@@ -1,16 +1,10 @@
-import Logo from '../components/shared/Logo'
-import SearchBar from '../components/shared/SearchBar'
+import SearchContainer from '../components/shared/SearchContainer'
 
 const Home = () => {
   return (
-    <div className='flex flex-col justify-center items-center mt-[30vh]'>
-      {/* LOGO */}
-      <div className='w-[40%]'>
-        <Logo/>
-      </div>
-
-      {/* SEARCH BAR */}
-      <SearchBar/>
+    <div className='flex flex-col justify-center items-center mt-[20vh] mx-auto max-w-screen-lg'>
+      {/* SEARCH CONTAINER */}
+      <SearchContainer />
     </div>
   )
 }

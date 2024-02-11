@@ -5,7 +5,7 @@ const RootLayout = () => {
   return (
     <div>
       {/* HEADER */}
-      <header className='header'>
+      <header className='mx-auto max-w-screen-lg'>
         <SearchContainer />
       </header>
 
