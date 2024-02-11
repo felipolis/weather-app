@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { useGeneralStore } from '../../../store/generalStore';
-import { useOpenMeteoGetCurrentWeather, useOpenMeteoGetLocationCoordinates } from '../../../lib/react-query/queriesAndMutations';
+import { useEffect, useMemo } from 'react';
 import { CiCalendar } from 'react-icons/ci';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { useOpenMeteoGetCurrentWeather } from '../../../lib/react-query/queriesAndMutations';
+import { useGeneralStore } from '../../../store/generalStore';
 
 const CurrentWeatherOM = () => {
 
